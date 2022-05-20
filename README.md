@@ -1,2 +1,2 @@
-# Feudle-2.0
+# feudle-2.0
 using anything for feudle but rust
