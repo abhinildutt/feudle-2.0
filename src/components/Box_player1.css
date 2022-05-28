@@ -1,0 +1,11 @@
+.body-boxes {
+    margin-top: 4vh; margin-left: 39vw; margin-right: 35vw; float: left;
+}
+
+.lines {
+    margin: 2px;height: 10vh;
+}
+
+.box {
+    border: 0.1px solid black; margin: 4px; height: 55px; width: 59px; float: left; display: inline-flex; align-items: center; justify-content: center; vertical-align: top; font-weight: 900; font-size: 25px;
+}

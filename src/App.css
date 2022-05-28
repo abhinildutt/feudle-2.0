@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+hr.solid {
+  margin-top: 2vh;
+  border-top: 4px solid rgb(7, 1, 1);
+}
+
+.font-center {
+  margin-top: 2vh;
+  text-align: right;
+  font-family: 'Fredoka', sans-serif; 
+  font-size: 30px;
+  margin-right: 46vw;
+}
