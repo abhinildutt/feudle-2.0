@@ -3,15 +3,10 @@ import "./Keyboard.css";
 import Key from "./Key";
 
 const Keyboard = () => {
-//   const keyLayout = [
-//     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-//     ["A", "S", "D", "F", "G", "H", "J", "K", "L"], //backpace included here by default
-//     ["Z", "X", "C", "V", "B", "N", "M"], //enter included on bottom by default
-//   ];
-const keyLayout = [
-    ["R", "I", "Y", "A", "R", "V", "E", "R", "M", "A"],
-    ["I", "S", "A", "W", "E", "S", "O", "M", "E"], //backpace included here by default
-    ["I", "L", "O", "V", "E", "M", "E"], //enter included on bottom by default
+  const keyLayout = [
+    ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+    ["A", "S", "D", "F", "G", "H", "J", "K", "L"], //backpace included here by default
+    ["Z", "X", "C", "V", "B", "N", "M"], //enter included on bottom by default
   ];
 
   const [keyInput, setKeyInput] = React.useState("");
@@ -64,7 +59,7 @@ const keyLayout = [
 
   return (
     <div className="keyboard">
-      <h5>{keyInput}</h5> {/* Remove this later */}
+      {/* <h5>{keyInput}</h5> Remove this later */}
       <div className="keyboard__keys">
         <div>
           {keyLayout[0].map((key) => (
