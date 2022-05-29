@@ -1,3 +1,8 @@
 .timer-position {
-    margin-left: 50px;
+    border: "1px solid black";
+    margin-top: 15vh;
+    margin-left: 10vw;
+    width: 23vh;
+    height: 150px;
+    float: "left";
 }

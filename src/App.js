@@ -1,5 +1,6 @@
 import "./App.css";
 import Box_player1 from "./components/Board/Box_player1.js";
+import Box_player2 from "./components/Board/Box_player2.js";
 import Keyboard from "./components/Keyboard/Keyboard";
 import Timer from "./components/Timer/Timer";
 
@@ -15,7 +16,7 @@ function App() {
       <body>
         <Timer />
         <Box_player1 />
-        {/* <Box_player2/> */}
+        <Box_player2/>
         <Keyboard />
       </body>
     </>

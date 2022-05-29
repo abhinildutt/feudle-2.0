@@ -25,7 +25,7 @@ const Timer = () => {
   const percentage = Math.round(((Math.floor((time / 1000) % 300)) / 300.0) * 100);
 
   return (
-    <div style={{ width: 150, height: 150 }} class="timer-position">
+    <div class="timer-position">
       <CircularProgressbar value={percentage} text={minutes + ":" + seconds} />
       <button onClick={() => setTimerOn(true)}>Start</button>
       <button onClick={() => setTimerOn(false)}>Stop</button>

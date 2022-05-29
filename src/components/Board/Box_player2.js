@@ -27,6 +27,7 @@ export default class Box_player2 extends React.Component {
                 {this.render_lines(4)}
                 {this.render_lines(5)}
                 {this.render_lines(6)}
+                PLAYER 2
             </div>
         )
     }
