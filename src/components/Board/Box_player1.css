@@ -1,9 +1,10 @@
 .body-boxes {
+    overflow: hidden;
    width: 350px; margin-top: -27vh; margin-left: 39.2vw; margin-right: 35vw; 
 }
 
 .lines {
-    margin: 2px;height: 10vh;
+    margin: 2px;height: 12vh;
 }
 
 .box {

@@ -1,8 +1,11 @@
 import React from "react";
 import "./Keyboard.css";
 import Key from "./Key";
+import {Feudle} from "../../logic/game.js";
 
 const Keyboard = () => {
+  var line = 1, box = 1;
+  var word = "";
   const keyLayout = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"], //backpace included here by default
@@ -11,29 +14,136 @@ const Keyboard = () => {
 
   const [keyInput, setKeyInput] = React.useState("");
 
+  var game = new Feudle();
+  game.set_word("ALERT");
+
+  const change_green = (line, box, num) => {
+    const s = num + "line" + line.toString() + "box" + box.toString();
+    document.getElementById(s).style.backgroundColor = "#46a842";
+  }
+  const change_yellow = (line, box, num) => {
+    const s = num + "line" + line.toString() + "box" + box.toString();
+    document.getElementById(s).style.backgroundColor = "rgb(239, 187, 16)";
+  }
+  const change_grey = (line, box, num) => {
+    const s = num + "line" + line.toString() + "box" + box.toString();
+    document.getElementById(s).style.backgroundColor = "#5f6870";
+  }
+
+
+  document.addEventListener("keyup", function(event) {
+    switch (event.code) {
+        case "Enter":
+          if(word.length == 5) {
+            console.log(word);
+            game.guess(word);
+            var s = game.color(word);
+            for (var i = 0; i < s.length; i++) {
+
+              const s2 = "line" + line.toString() + "box" + (i+1).toString();
+              document.getElementById(s2).style.color = "rgb(255, 255, 255)";
+              document.getElementById(s2).style.border = "0px solid black";
+              document.getElementById(s2).style.margin = "4.5px";
+              document.getElementById(s2).style.fontSize = "25px";
+              document.getElementById(s2).style.height = "58px";
+              document.getElementById(s2).style.width = "59px";
+
+
+              if(s[i] == 'g') {
+                change_green(line,i+1,"");
+              }
+              if(s[i] == 'y') {
+                change_yellow(line,i+1,"");
+              }
+              if(s[i] == 'e') {
+                change_grey(line,i+1,"");
+              }
+            }
+
+            line++;
+            box = 1;
+            word = "";
+          }
+          else alert("Word must be 5 letters")
+        case "Backspace" :
+          if(box > 1) box--;
+          var s = "line" + line.toString() + "box" + box.toString();
+          document.getElementById(s).innerHTML = `<div></div><br />`;
+          document.getElementById(s).style.border = "0.1px solid black";
+          document.getElementById(s).style.margin = "4px";
+          if(word.length != 0) word = word.slice(0,-1);
+          break;
+        default:
+          if(box <= 5) {
+            var s = "line" + line.toString() + "box" + box.toString();  
+            var keyValue = event.code.toUpperCase();
+            document.getElementById(s).innerHTML +=`<div>${keyValue[keyValue.length-1]}</div><br />`;
+            document.getElementById(s).style.border = "2px solid black";
+            document.getElementById(s).style.margin = "2.44px";
+            word += keyValue[keyValue.length-1].toUpperCase();
+          }
+          if(box <= 5) box++;
+          break;
+        }
+    }
+  );
+
   const buttonPressHandler = (keyValue) => {
     //set max length of input to 5
-    if (keyInput.length < 5) {
-      setKeyInput((prevKeyInput) => prevKeyInput + keyValue);
-    } else {
-      console.log("max characters of 5 reached");
+    if(box <= 5) {
+      var s = "line" + line.toString() + "box" + box.toString();  
+      document.getElementById(s).innerHTML +=`<div>${keyValue.toUpperCase()}</div><br />`;
+      document.getElementById(s).style.border = "2px solid black";
+      document.getElementById(s).style.margin = "2.44px";
+      word += keyValue.toUpperCase();
     }
-    console.log(keyInput);
+    if(box <= 5) box++;
+    
   };
 
   const backspaceHandler = () => {
-    setKeyInput((prevKeyInput) => prevKeyInput.slice(0, -1));
-    console.log(keyInput);
+    if(box > 1) box--;
+    var s = "line" + line.toString() + "box" + box.toString();
+    document.getElementById(s).innerHTML = `<div></div><br />`;
+    document.getElementById(s).style.border = "0.1px solid black";
+    document.getElementById(s).style.margin = "4px";
+    if(word.length != 0) word = word.slice(0,-1);
   };
 
   const submitHandler = () => {
     //submit only when input is 5 characters
-    if (keyInput.length === 5) {
-      console.log("SUBMITTED");
-      setKeyInput("");
-    } else {
-      console.log("length of input is not 5");
+    if(word.length == 5) {
+      console.log(word);
+      game.guess(word);
+
+      var s = game.color(word);
+
+      for (var i = 0; i < s.length; i++) {
+
+        const s2 = "line" + line.toString() + "box" + (i+1).toString();
+        document.getElementById(s2).style.color = "rgb(255, 255, 255)";
+        document.getElementById(s2).style.border = "0px solid black";
+        document.getElementById(s2).style.margin = "4.5px";
+        document.getElementById(s2).style.fontSize = "25px";
+        document.getElementById(s2).style.height = "58px";
+        document.getElementById(s2).style.width = "59px";
+
+        if(s[i] == 'g') {
+          change_green(line,i+1,"");
+        }
+        if(s[i] == 'y') {
+          change_yellow(line,i+1,"");
+        }
+        if(s[i] == 'e') {
+          change_grey(line,i+1,"");
+        }
+      }
+
+      line++;
+      box = 1;
+      word = "";
     }
+    else alert("Word must be 5 letters")
   };
 
   const backspaceKey = (
