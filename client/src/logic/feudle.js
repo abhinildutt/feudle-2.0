@@ -1,53 +1,55 @@
 class Feudle {
     constructor() {
-        this._word = "";
-        this._guess = ""
-        this._total_guesses = 6;
-        this._guesses = 0;
+        this.word = "";
+        this.guess = ""
+        this.totalGuesses = 6;
+        this.guesses = 0;
 
         let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        this._letter_map = new Map();
+        this.letterMap = new Map();
         for (let i = 0; i < alphabet.length; i++) {
-            this._letter_map.set(alphabet[i], {
+            this.letterMap.set(alphabet[i], {
                 guessed: false,
-                in_word: false,
-                in_position: false
+                inWord: false,
+                inPosition: false
             });
         }
     }
 
-    set_word(word) {
-        this._word = word.toUpperCase();
+    setWord(word) {
+        this.word = word.toUpperCase();
     }
 
-    check_win() {
-        return this._guess == this._word;
+    checkWin() {
+        return this.guess === this.word;
     }
 
-    check_lose() {
-        return this._guesses >= this._total_gusses;
+    checkLoss() {
+        return this.guesses >= this.totalGuesses;
     }
 
-    guess(guess) {
-        this._guess = guess.toUpperCase();
-        for (let i = 0; i < this._guess.length; i++) {
-            let char = this._guess.charAt(i);
-            if (this._letter_map.has(char)) {
-                this._letter_map.get(char).guessed = true;
-                if (this._word.includes(char)) {
-                    this._letter_map.get(char).in_word = true;
+    makeGuess(guess) {
+        this.guess = guess.toUpperCase();
+        for (let i = 0; i < this.guess.length; i++) {
+            let char = this.guess.charAt(i);
+            if (this.letterMap.has(char)) {
+                this.letterMap.get(char).guessed = true;
+                if (this.word.includes(char)) {
+                    this.letterMap.get(char).inWord = true;
                 }
             }
         }
 
-        for (let i = 0; i < this._guess.length; i++) {
-            let char = this._guess.charAt(i);
-            if (char == this._word.charAt(i)) {
-                this._letter_map.get(char).in_position = true;
+        for (let i = 0; i < this.guess.length; i++) {
+            let char = this.guess.charAt(i);
+            if (char === this.word.charAt(i)) {
+                this.letterMap.get(char).inPosition = true;
             }
         }
 
-        this._guesses++;
-        return this.check_win();
+        this.guesses++;
+        return this.checkWin();
     }
 }
+
+export default Feudle;
