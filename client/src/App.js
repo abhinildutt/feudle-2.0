@@ -9,8 +9,7 @@ import './App.css';
 import Box_player1 from "./components/Board/Box_player1";
 import Box_player2 from "./components/Board/Box_player2"
 import Keyboard from './components/Keyboard/Keyboard';
-// import Timer from './components/Timer/Timer';
-
+import Timer from './components/Timer/Timer';
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -85,6 +84,7 @@ class App extends Component {
 				<Box_player1/>
 				<Box_player2/>
 				<Keyboard/>
+				<Timer/>
 			</>
 		);
 	};
