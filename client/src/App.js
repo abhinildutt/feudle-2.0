@@ -5,6 +5,12 @@ import Feudle from "./logic/feudle";
 import ClientState from "./logic/clientState";
 import { getWord } from './logic/lib';
 
+import './App.css';
+import Box_player1 from "./components/Board/Box_player1";
+import Box_player2 from "./components/Board/Box_player2"
+import Keyboard from './components/Keyboard/Keyboard';
+// import Timer from './components/Timer/Timer';
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -72,11 +78,15 @@ class App extends Component {
 	}
 
  	render() {
-   		return (
-			<div className="App">
-     			<p>Hello</p>
-   			</div>
-		)
+		return (
+			<>
+				<div className="font-center"> Feudle </div>
+				<hr className="solid"/>  
+				<Box_player1/>
+				<Box_player2/>
+				<Keyboard/>
+			</>
+		);
 	};
 }
 
