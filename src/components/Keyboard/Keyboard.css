@@ -3,12 +3,12 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  min-width: 120vh;
   padding: 0.5% 0;
   background: #3a77b0;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
   transition: bottom 0.4s;
+  height: 22vh;
 }
 
 .keyboard__keys {
@@ -16,7 +16,7 @@
 }
 
 .keyboard__key {
-  height: 40px;
+  height: 6vh;
   width: 9%;
   max-width: 90px;
   margin: 0.2%;

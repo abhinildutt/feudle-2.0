@@ -1,7 +1,9 @@
 .box2 {
     border: 0.1px solid black; 
     margin: 3px; 
-    height: 40px; width: 40px; 
+    height: 6vh; width: 3vw; 
+    min-width: 30px;
+    min-height: 30px;
     float: left; 
     text-size-adjust: 20px; 
 }
@@ -12,7 +14,7 @@
 
 .body-boxes2 {
     overflow: hidden;
-    width: 230px;
-    margin-top: 5vh;
-    transform: translateX(10vh);
+    width: 19vw;
+    min-width: 180px;
+    transform: translateY(-10vh);
 }

@@ -9,12 +9,81 @@ hr.solid {
 
 .font-center {
   margin-top: 2vh;
-  text-align: right;
+  text-align: center;
   font-family: 'Fredoka', sans-serif; 
   font-size: 30px;
-  margin-right: 46vw;
 }
 
 .App-window {
   overflow: hidden;
+  min-width: 1000px;
+}
+
+.mymodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  height: 580px;
+  width: 360px;
+  z-index: 2000;
+}
+
+.myoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.close-modal-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#party-js-canvas {
+  z-index: 1000;
+}
+
+.a {
+  display: inline-block;
+  width: 35vw;
+  min-width: 200px;
+  vertical-align: top;
+  /* background-color: #ffcbcb; */
+}
+.b {
+  display: inline-block;
+  width: 45vw;
+  min-width: 400px;
+  /* background-color: #bee4eb; */
+}
+.c {
+  display: inline-block;
+  width: 19vw;
+  min-width: 200px;
+  /* background-color: #b5fccd; */
 }
