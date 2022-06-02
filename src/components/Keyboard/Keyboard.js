@@ -79,7 +79,7 @@ const Keyboard = () => {
             var keyValue = event.code.toUpperCase();
             document.getElementById(s).innerHTML +=`<div>${keyValue[keyValue.length-1]}</div><br />`;
             document.getElementById(s).style.border = "2px solid black";
-            document.getElementById(s).style.margin = "2.44px";
+            document.getElementById(s).style.margin = "2.7px";
             word += keyValue[keyValue.length-1].toUpperCase();
           }
           if(box <= 5) box++;

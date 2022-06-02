@@ -73,10 +73,11 @@ class Feudle {
                flag = 1;
             }
             else {
-                for (let j = i; j < this._guess.length; j++) {
+                for (let j = 0; j < this._guess.length; j++) {
                     if (i != j && char == this._word.charAt(j)) {
                         color += "y";
                         flag = 1;
+                        break;
                     }
                 }
             }
