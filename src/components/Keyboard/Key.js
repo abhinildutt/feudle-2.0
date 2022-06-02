@@ -6,7 +6,7 @@ const Key = (props) => {
     props.onPress(props.text);
   };
   return (
-    <button onClick={clickHandler} type="button" className="keyboard__key">
+    <button onClick={clickHandler} type="button" className="keyboard__key" id={props.id}>
       {props.text}
     </button>
   );

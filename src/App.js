@@ -4,7 +4,6 @@ import Box_player1 from "./components/Board/Box_player1.js";
 import Box_player2 from "./components/Board/Box_player2.js";
 import Keyboard from "./components/Keyboard/Keyboard";
 import Timer from "./components/Timer/Timer";
-import { Container, Row, Col } from "react-bootstrap";
 import party from "party-js";
 import Modal from "react-modal";
 import setting from "./static/setting.png";
@@ -58,6 +57,7 @@ function App() {
 
   function toggleModal() {
     setIsOpen(!isOpen);
+    window.location.reload(false);
   }
 
   const onOpenModal = () => {
@@ -103,9 +103,6 @@ function App() {
       <hr class="solid" />
       <div class="a">
         <Timer />{" "}
-        <button id="btn" onClick={onOpenModal}>
-          Open Modal
-        </button>
       </div>
       <div class="b">
         <Box_player1 />
@@ -113,7 +110,7 @@ function App() {
       <div class="c">
         <Box_player2 />
       </div>
-      <Keyboard />
+      <Keyboard onVictory={onOpenModal}/>
     </div>
   );
 }

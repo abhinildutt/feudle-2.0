@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Keyboard.css";
 import Key from "./Key";
 import {Feudle} from "../../logic/game.js";
 
-const Keyboard = () => {
+const Keyboard = (props) => {
   var line = 1, box = 1;
   var word = "";
   const keyLayout = [
@@ -15,78 +15,89 @@ const Keyboard = () => {
   const [keyInput, setKeyInput] = React.useState("");
 
   var game = new Feudle();
-  game.set_word("ALERT");
+  game.set_word("ROUTE");
 
-  const change_green = (line, box, num) => {
+  const change_green = (line, box, num, key) => {
     const s = num + "line" + line.toString() + "box" + box.toString();
-    document.getElementById(s).style.backgroundColor = "#46a842";
+    document.getElementById(s).style.backgroundColor = "rgb(70, 168, 66)";
+    document.getElementById("key"+key.toString().toUpperCase()).style.background = "rgb(70, 168, 66)";
   }
-  const change_yellow = (line, box, num) => {
+  const change_yellow = (line, box, num, key) => {
     const s = num + "line" + line.toString() + "box" + box.toString();
     document.getElementById(s).style.backgroundColor = "rgb(239, 187, 16)";
-  }
-  const change_grey = (line, box, num) => {
-    const s = num + "line" + line.toString() + "box" + box.toString();
-    document.getElementById(s).style.backgroundColor = "#5f6870";
-  }
-
-
-  document.addEventListener("keyup", function(event) {
-    switch (event.code) {
-        case "Enter":
-          if(word.length == 5) {
-            console.log(word);
-            game.guess(word);
-            var s = game.color(word);
-            for (var i = 0; i < s.length; i++) {
-
-              const s2 = "line" + line.toString() + "box" + (i+1).toString();
-
-              document.getElementById(s2).style.color = "rgb(255, 255, 255)";
-              document.getElementById(s2).style.border = "0px solid black";
-              document.getElementById(s2).style.margin = "4px";
-              document.getElementById(s2).style.fontSize = "25px";
-              document.getElementById(s2).style.height = "8vh";
-              document.getElementById(s2).style.width = "4.5vw";
-
-              if(s[i] == 'g') {
-                change_green(line,i+1,"");
-              }
-              if(s[i] == 'y') {
-                change_yellow(line,i+1,"");
-              }
-              if(s[i] == 'e') {
-                change_grey(line,i+1,"");
-              }
-            }
-
-            line++;
-            box = 1;
-            word = "";
-          }
-          else alert("Word must be 5 letters")
-        case "Backspace" :
-          if(box > 1) box--;
-          var s = "line" + line.toString() + "box" + box.toString();
-          document.getElementById(s).innerHTML = `<div></div><br />`;
-          document.getElementById(s).style.border = "0.1px solid black";
-          document.getElementById(s).style.margin = "4px";
-          if(word.length != 0) word = word.slice(0,-1);
-          break;
-        default:
-          if(box <= 5) {
-            var s = "line" + line.toString() + "box" + box.toString();  
-            var keyValue = event.code.toUpperCase();
-            document.getElementById(s).innerHTML +=`<div>${keyValue[keyValue.length-1]}</div><br />`;
-            document.getElementById(s).style.border = "2px solid black";
-            document.getElementById(s).style.margin = "4px";
-            word += keyValue[keyValue.length-1].toUpperCase();
-          }
-          if(box <= 5) box++;
-          break;
-        }
+    if(document.getElementById("key"+key.toString().toUpperCase()).style.background !== "rgb(70, 168, 66)") {
+      document.getElementById("key"+key.toString().toUpperCase()).style.background = "rgb(239, 187, 16)";
     }
-  );
+  }
+  const change_grey = (line, box, num, key) => {
+    const s = num + "line" + line.toString() + "box" + box.toString();
+    document.getElementById(s).style.backgroundColor = "rgb(95, 104, 112)";
+    if(document.getElementById("key"+key.toString().toUpperCase()).style.background !== "rgb(70, 168, 66)" 
+    && document.getElementById("key"+key.toString().toUpperCase()).style.background !== "rgb(239, 187, 16)") {
+      document.getElementById("key"+key.toString().toUpperCase()).style.background = "rgb(95, 104, 112)";
+    }
+  }
+
+  document.addEventListener("keyup", Respond);
+  function Respond(event) {
+    switch (event.code) {
+      case "Enter":
+        if(word.length == 5) {
+          console.log(word);
+          game.guess(word);
+          var s = game.color(word);
+          if (s == "ggggg") {
+            props.onVictory();
+          }
+          for (var i = 0; i < s.length; i++) {
+
+            const s2 = "line" + line.toString() + "box" + (i+1).toString();
+
+            document.getElementById(s2).style.color = "rgb(255, 255, 255)";
+            document.getElementById(s2).style.border = "0px solid black";
+            document.getElementById(s2).style.margin = "4px";
+            document.getElementById(s2).style.fontSize = "25px";
+            document.getElementById(s2).style.height = "8vh";
+            document.getElementById(s2).style.width = "4.5vw";
+
+            if(s[i] == 'g') {
+              change_green(line,i+1,"", word[i]);
+            }
+            if(s[i] == 'y') {
+              change_yellow(line,i+1,"", word[i]);
+            }
+            if(s[i] == 'e') {
+              change_grey(line,i+1,"", word[i]);
+            }
+          }
+
+          line++;
+          box = 1;
+          word = "";
+        }
+        else alert("Word must be 5 letters")
+      case "Backspace" :
+        if(box > 1) box--;
+        var s = "line" + line.toString() + "box" + box.toString();
+        document.getElementById(s).innerHTML = `<div></div><br />`;
+        document.getElementById(s).style.border = "0.1px solid black";
+        document.getElementById(s).style.margin = "4px";
+        if(word.length != 0) word = word.slice(0,-1);
+        break;
+      default:
+        if(box <= 5) {
+          var s = "line" + line.toString() + "box" + box.toString();  
+          var keyValue = event.code.toUpperCase();
+          document.getElementById(s).innerHTML +=`<div>${keyValue[keyValue.length-1]}</div><br />`;
+          document.getElementById(s).style.border = "2px solid black";
+          document.getElementById(s).style.margin = "4px";
+          word += keyValue[keyValue.length-1].toUpperCase();
+        }
+        if(box <= 5) box++;
+        break;
+      }
+  }
+  
 
   const buttonPressHandler = (keyValue) => {
     //set max length of input to 5
@@ -110,13 +121,16 @@ const Keyboard = () => {
     if(word.length != 0) word = word.slice(0,-1);
   };
 
+
   const submitHandler = () => {
     //submit only when input is 5 characters
     if(word.length == 5) {
-      console.log(word);
       game.guess(word);
 
       var s = game.color(word);
+      if (s == "ggggg") {
+        props.onVictory();
+      }
 
       for (var i = 0; i < s.length; i++) {
 
@@ -130,16 +144,15 @@ const Keyboard = () => {
         document.getElementById(s2).style.width = "4.5vw";
 
         if(s[i] == 'g') {
-          change_green(line,i+1,"");
+          change_green(line,i+1,"", word[i]);
         }
         if(s[i] == 'y') {
-          change_yellow(line,i+1,"");
+          change_yellow(line,i+1,"", word[i]);
         }
         if(s[i] == 'e') {
-          change_grey(line,i+1,"");
+          change_grey(line,i+1,"", word[i]);
         }
       }
-
       line++;
       box = 1;
       word = "";
@@ -170,22 +183,21 @@ const Keyboard = () => {
 
   return (
     <div className="keyboard">
-      {/* <h5>{keyInput}</h5> Remove this later */}
       <div className="keyboard__keys">
         <div>
           {keyLayout[0].map((key) => (
-            <Key text={key} onPress={buttonPressHandler} />
+            <Key text={key} onPress={buttonPressHandler} id={"key" + key.toString()} />
           ))}
         </div>
         <div>
-          {keyLayout[1].map((key) => (
-            <Key text={key} onPress={buttonPressHandler} />
+        {keyLayout[1].map((key) => (
+            <Key text={key} onPress={buttonPressHandler} id={"key" + key.toString()} />
           ))}
           {backspaceKey}
         </div>
         <div>
-          {keyLayout[2].map((key) => (
-            <Key text={key} onPress={buttonPressHandler} />
+        {keyLayout[2].map((key) => (
+            <Key text={key} onPress={buttonPressHandler} id={"key" + key.toString()} />
           ))}
           {enterKey}
         </div>
