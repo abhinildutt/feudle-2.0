@@ -14,3 +14,7 @@ hr.solid {
   font-size: 30px;
   margin-right: 46vw;
 }
+
+.App-window {
+  overflow: hidden;
+}

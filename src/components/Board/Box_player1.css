@@ -1,12 +1,25 @@
 .body-boxes {
-   overflow: hidden;
-   width: 350px; margin-top: -27vh; margin-left: 39.2vw; margin-right: 35vw; 
+  overflow: hidden;
+  width: 303px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .lines {
-    margin: 2px;height: 12vh;
+  margin: 2px;
+  height: 12vh;
 }
 
 .box {
-    border: 0.1px solid black; margin: 4px; height: 55px; width: 59px; float: left; display: inline-flex; align-items: center; justify-content: center; vertical-align: top; font-weight: 900; font-size: 25px;
+  border: 0.1px solid black;
+  margin: 4px;
+  height: 52px;
+  width: 52px;
+  float: left;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+  font-weight: 900;
+  font-size: 25px;
 }

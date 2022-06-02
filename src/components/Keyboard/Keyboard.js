@@ -46,8 +46,8 @@ const Keyboard = () => {
               document.getElementById(s2).style.border = "0px solid black";
               document.getElementById(s2).style.margin = "4.5px";
               document.getElementById(s2).style.fontSize = "25px";
-              document.getElementById(s2).style.height = "55px";
-              document.getElementById(s2).style.width = "59px";
+              document.getElementById(s2).style.height = "52px";
+              document.getElementById(s2).style.width = "52px";
 
               if(s[i] == 'g') {
                 change_green(line,i+1,"");
@@ -126,8 +126,8 @@ const Keyboard = () => {
         document.getElementById(s2).style.border = "0px solid black";
         document.getElementById(s2).style.margin = "4.5px";
         document.getElementById(s2).style.fontSize = "25px";
-        document.getElementById(s2).style.height = "55px";
-        document.getElementById(s2).style.width = "59px";
+        document.getElementById(s2).style.height = "52px";
+        document.getElementById(s2).style.width = "52px";
 
         if(s[i] == 'g') {
           change_green(line,i+1,"");
