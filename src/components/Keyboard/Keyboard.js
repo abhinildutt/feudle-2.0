@@ -57,8 +57,8 @@ const Keyboard = (props) => {
             document.getElementById(s2).style.border = "0px solid black";
             document.getElementById(s2).style.margin = "4px";
             document.getElementById(s2).style.fontSize = "25px";
-            document.getElementById(s2).style.height = "8vh";
-            document.getElementById(s2).style.width = "4.5vw";
+            document.getElementById(s2).style.height = "4.4vw";
+            document.getElementById(s2).style.width = "4.4vw";
 
             if(s[i] == 'g') {
               change_green(line,i+1,"", word[i]);
@@ -140,8 +140,8 @@ const Keyboard = (props) => {
         document.getElementById(s2).style.border = "0px solid black";
         document.getElementById(s2).style.margin = "4px";
         document.getElementById(s2).style.fontSize = "25px";
-        document.getElementById(s2).style.height = "8vh";
-        document.getElementById(s2).style.width = "4.5vw";
+        document.getElementById(s2).style.height = "4.4vw";
+        document.getElementById(s2).style.width = "4.4vw";
 
         if(s[i] == 'g') {
           change_green(line,i+1,"", word[i]);
