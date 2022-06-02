@@ -41,13 +41,13 @@ const Keyboard = () => {
             for (var i = 0; i < s.length; i++) {
 
               const s2 = "line" + line.toString() + "box" + (i+1).toString();
+
               document.getElementById(s2).style.color = "rgb(255, 255, 255)";
               document.getElementById(s2).style.border = "0px solid black";
               document.getElementById(s2).style.margin = "4.5px";
               document.getElementById(s2).style.fontSize = "25px";
-              document.getElementById(s2).style.height = "58px";
+              document.getElementById(s2).style.height = "55px";
               document.getElementById(s2).style.width = "59px";
-
 
               if(s[i] == 'g') {
                 change_green(line,i+1,"");
@@ -121,11 +121,12 @@ const Keyboard = () => {
       for (var i = 0; i < s.length; i++) {
 
         const s2 = "line" + line.toString() + "box" + (i+1).toString();
+
         document.getElementById(s2).style.color = "rgb(255, 255, 255)";
         document.getElementById(s2).style.border = "0px solid black";
         document.getElementById(s2).style.margin = "4.5px";
         document.getElementById(s2).style.fontSize = "25px";
-        document.getElementById(s2).style.height = "58px";
+        document.getElementById(s2).style.height = "55px";
         document.getElementById(s2).style.width = "59px";
 
         if(s[i] == 'g') {

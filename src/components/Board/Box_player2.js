@@ -20,7 +20,7 @@ export default class Box_player2 extends React.Component {
     }
     render() {
         return (
-            <div class = "body-boxes2">
+            <div class = "body-boxes2" id = "bb-2">
                 {this.render_lines(1)}
                 {this.render_lines(2)}
                 {this.render_lines(3)}

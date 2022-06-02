@@ -1,5 +1,9 @@
 .box2 {
-    border: 0.1px solid black; margin: 2px; height: 40px; width: 44px; float: left; text-size-adjust: 20px; 
+    border: 0.1px solid black; 
+    margin: 2px; 
+    height: 40px; width: 44px; 
+    float: left; 
+    text-size-adjust: 20px; 
 }
 
 .lines2 {
