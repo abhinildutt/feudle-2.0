@@ -12,6 +12,8 @@ hr.solid {
   text-align: center;
   font-family: 'Fredoka', sans-serif; 
   font-size: 30px;
+  margin-left: 47vw;
+  float: left;
 }
 
 .App-window {
@@ -86,4 +88,25 @@ hr.solid {
   width: 19vw;
   min-width: 200px;
   /* background-color: #b5fccd; */
+}
+
+.sett {
+  height: 4vh;
+  margin-left: 2vw;
+  margin-top: 2.4vh;
+  transition-duration: 1s;
+}
+
+.sett:hover {
+  -webkit-transform:rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.stat {
+  height: 4vh;
+  margin-left: 39vw;
+  margin-top: 2.4vh;
 }

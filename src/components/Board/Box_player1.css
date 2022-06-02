@@ -3,7 +3,7 @@
   width: 27vw;
   min-width: 250px;
   /* border: 1px solid black; */
-  margin-top: 2vh;
+  margin-top: 5vh;
   margin-left: 3vw;
 
 }
@@ -16,7 +16,7 @@
 .box {
   border: 0.1px solid black;
   margin: 4px;
-  height: 9vh;
+  height: 8vh;
   width: 4.5vw;
   min-width: 40px;
   min-height: 40px;

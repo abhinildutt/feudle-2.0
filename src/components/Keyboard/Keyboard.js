@@ -44,9 +44,9 @@ const Keyboard = () => {
 
               document.getElementById(s2).style.color = "rgb(255, 255, 255)";
               document.getElementById(s2).style.border = "0px solid black";
-              document.getElementById(s2).style.margin = "4.5px";
+              document.getElementById(s2).style.margin = "4px";
               document.getElementById(s2).style.fontSize = "25px";
-              document.getElementById(s2).style.height = "9vh";
+              document.getElementById(s2).style.height = "8vh";
               document.getElementById(s2).style.width = "4.5vw";
 
               if(s[i] == 'g') {
@@ -94,7 +94,7 @@ const Keyboard = () => {
       var s = "line" + line.toString() + "box" + box.toString();  
       document.getElementById(s).innerHTML +=`<div>${keyValue.toUpperCase()}</div><br />`;
       document.getElementById(s).style.border = "2px solid black";
-      document.getElementById(s).style.margin = "2.44px";
+      document.getElementById(s).style.margin = "4px";
       word += keyValue.toUpperCase();
     }
     if(box <= 5) box++;
@@ -124,9 +124,9 @@ const Keyboard = () => {
 
         document.getElementById(s2).style.color = "rgb(255, 255, 255)";
         document.getElementById(s2).style.border = "0px solid black";
-        document.getElementById(s2).style.margin = "4.5px";
+        document.getElementById(s2).style.margin = "4px";
         document.getElementById(s2).style.fontSize = "25px";
-        document.getElementById(s2).style.height = "9vh";
+        document.getElementById(s2).style.height = "8vh";
         document.getElementById(s2).style.width = "4.5vw";
 
         if(s[i] == 'g') {

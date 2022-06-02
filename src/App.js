@@ -7,7 +7,17 @@ import Timer from "./components/Timer/Timer";
 import { Container, Row, Col } from "react-bootstrap";
 import party from "party-js";
 import Modal from "react-modal";
+import setting from "./static/setting.png";
+import stat1 from "./static/stat1.png";
+// import stat2 from "./static/stat2.png";
+import stat3 from "./static/stat3.png";
+// import stat4 from "./static/stat4.png";
+
+
 //https://codesandbox.io/s/77yom?file=/src/App.js:170-342
+
+
+
 
 Modal.setAppElement("#root");
 const confettiSettings = {
@@ -41,6 +51,11 @@ const confettiSettings = {
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+
+  function hover_change_source(element) {
+    element.setAttribute('src', {stat3});
+  }
+
   function toggleModal() {
     setIsOpen(!isOpen);
   }
@@ -83,6 +98,8 @@ function App() {
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css"
       />
       <div class="font-center"> Feudle </div>
+      <input type= "image" src = {stat1} class="stat"/>
+      <input type = "image" src = {setting} class = "sett"/>
       <hr class="solid" />
       <div class="a">
         <Timer />{" "}
