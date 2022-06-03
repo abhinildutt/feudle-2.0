@@ -12,6 +12,9 @@ const Keyboard = (props) => {
     ["Z", "X", "C", "V", "B", "N", "M"], //enter included on bottom by default
   ];
 
+  function check_valid_key(num) {
+    return (num >= 65 && num <= 90);
+  }
   const [keyInput, setKeyInput] = React.useState("");
 
   var game = new Feudle();
@@ -85,6 +88,7 @@ const Keyboard = (props) => {
         if(word.length != 0) word = word.slice(0,-1);
         break;
       default:
+        if(check_valid_key(event.keyCode) == false) break;
         if(box <= 5) {
           var s = "line" + line.toString() + "box" + box.toString();  
           var keyValue = event.code.toUpperCase();
