@@ -4,7 +4,6 @@ class Feudle {
         this.guess = ""
         this.totalGuesses = 6;
         this.guesses = 0;
-
         let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         this.letterMap = new Map();
         for (let i = 0; i < alphabet.length; i++) {
@@ -49,6 +48,30 @@ class Feudle {
 
         this.guesses++;
         return this.checkWin();
+    }
+
+    color(guess) {
+        guess.toUpperCase();
+        var color = "";
+        for (let i = 0; i < guess.length; i++) {
+            let char = guess.charAt(i);
+            var flag = 0;
+            if (char == this.word.charAt(i)) {
+                color += "g";
+                flag = 1;
+            } else {
+                for (let j = i; j < guess.length; j++) {
+                    if (i != j && char == this.word.charAt(j)) {
+                        color += "y";
+                        flag = 1;
+                    }
+                }
+            }
+            if (flag == 0) {
+                color += "e";
+            }
+        }
+        return color;
     }
 }
 

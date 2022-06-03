@@ -1,5 +1,5 @@
-import './Box_player1.css' 
-import React from 'react'
+import "./Box_player1.css" 
+import React from "react"
 
 export default class Box_player1 extends React.Component {
     render_box(line, i) {

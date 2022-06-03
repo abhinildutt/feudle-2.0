@@ -1,7 +1,7 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import React, { useState, useEffect } from "react";
-import "./Timer.css";
+import './Timer.css'
 
 const Timer = () => {
   const [time, setTime] = useState(0);
@@ -22,11 +22,11 @@ const Timer = () => {
   const minutes = ("0" + Math.floor((time / 60000) % 60)).slice(-2);
   const seconds = ("0" + Math.floor((time / 1000) % 60)).slice(-2);
 
-  const percentage = Math.round(((Math.floor((time / 1000) % 60)) / 60.0) * 100);
+  const percentage = Math.round(((Math.floor((time / 1000) % 300)) / 300.0) * 100);
 
   return (
-    <div style={{ width: 200, height: 200 }}>
-      <CircularProgressbar value={percentage} text={minutes + ":" + seconds} />;
+    <div class="timer-position">
+      <CircularProgressbar value={percentage} text={minutes + ":" + seconds} />
       <button onClick={() => setTimerOn(true)}>Start</button>
       <button onClick={() => setTimerOn(false)}>Stop</button>
       <button onClick={() => setTime(0)}>Reset</button>

@@ -1,12 +1,14 @@
 .box2 {
-    border: 0.1px solid black; margin: 2px; height: 40px; width: 44px; float: left; text-size-adjust: 20px;
+    border: 0.1px solid black; margin: 2px; height: 40px; width: 44px; float: left; text-size-adjust: 20px; 
 }
 
 .lines2 {
-    margin: 1px; height: 47px;
+    margin: 1px; height: 5vh;
 }
 
 .body-boxes2 {
+    overflow: hidden;
+    /* border: 1px solid black; */
+    margin-top: -55vh;
     margin-left: 80vw;
-    height: 100px;
 }

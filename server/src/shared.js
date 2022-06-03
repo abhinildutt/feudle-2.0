@@ -4,9 +4,8 @@ const MessageType = {
     ReadyEvent: 2,
     StartEvent: 3,
     GuessEvent: 4,
-    FinishEvent: 5,
-    EndEvent: 6,
-    LoseEvent: 7
+    WinEvent: 5,
+    LoseEvent: 6
 }
 Object.freeze(MessageType);
 

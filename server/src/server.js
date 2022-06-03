@@ -35,8 +35,8 @@ function sendPacket(socket, messageType, payload, broadcastType) {
 		[MessageType.ReadyEvent, "ReadyEvent"],
 		[MessageType.StartEvent, "StartEvent"],
 		[MessageType.GuessEvent, "GuessEvent"],
-		[MessageType.FinishEvent, "FinishEvent"],
-		[MessageType.EndEvent, "EndEvent"]
+  		[MessageType.WinEvent, "WinEvent"],
+		[MessageType.LoseEvent, "LoseEvent"],
 	]);
 	let messageTypeString = messageMapping.get(messageType);
 
@@ -65,7 +65,9 @@ function handlePackets(socket, state) {
 	});
 
 	socket.on(MessageType.ReadyEvent, (data) => {
-		state.playersReady.get(data.id) = true;
+		state.playersReady.set(data.id, true);
+		console.log(`Received ready event from ${data.id}`);
+		console.log(`Number of players ready ${state.playersReady.size}`);
 		if (state.playersReady.size == MAX_PLAYERS) {
 			console.log("Starting game");
 			state.startGame();
@@ -76,29 +78,12 @@ function handlePackets(socket, state) {
 	});
 	
 	socket.on(MessageType.GuessEvent, (data) => {
-		let id = data.id;
-		let guess = data.guess;
-		let payload = {
-			id: id,
-			guess: guess
-		}
-
-		sendPacket(socket, MessageType.GuessEvent, payload, BroadcastType.AllClientsExceptOne);
+		sendPacket(socket, MessageType.GuessEvent, data, BroadcastType.AllClientsExceptOne);
 	});
 	
-	socket.on(MessageType.FinishEvent, (data) => {
-		let id = data.id;
-		console.log(`Player ${id} won`);
+	socket.on(MessageType.WinEvent, (data) => {
+		console.log(`Player ${data.id} won`);
 		state.endGame();
-		sendPacket(socket, MessageType.EndEvent, { id: id }, BroadcastType.AllClients);
-	});
-
-	socket.on(MessageType.LoseEvent, (data) => {
-		let id = data.id;
-		let winningId = id == 0 ? 1 : 0;
-		console.log(`Player ${id} lost`);
-		console.log(`Player ${winningId} won`);
-		state.endGame();
-		sendPacket(socket, MessageType.EndEvent, { id: winningId }, BroadcastType.AllClients);
+		sendPacket(socket, MessageType.LoseEvent, data, BroadcastType.AllClientsExceptOne);
 	});
 }
