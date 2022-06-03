@@ -14,6 +14,10 @@ const Keyboard = (props) => {
     ["Z", "X", "C", "V", "B", "N", "M"], //enter included on bottom by default
   ];
 
+  function check_valid_key(num) {
+    return (num >= 65 && num <= 90);
+  }
+
   var game = new Feudle();
   game.set_word("DUMMY");
 
@@ -66,8 +70,6 @@ const Keyboard = (props) => {
             }
             for (var i = 0; i < s.length; i++) {
               const s2 = "line" + line.toString() + "box" + (i + 1).toString();
-              console.log(s2);
-
               document.getElementById(s2).style.color = "rgb(255, 255, 255)";
               document.getElementById(s2).style.border = "0px solid black";
               document.getElementById(s2).style.margin = "4px";
