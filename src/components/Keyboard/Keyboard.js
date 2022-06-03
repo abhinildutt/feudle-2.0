@@ -1,130 +1,147 @@
 import React, { useState } from "react";
 import "./Keyboard.css";
 import Key from "./Key";
-import {Feudle} from "../../logic/game.js";
+import { Feudle } from "../../logic/game.js";
+
+var line = 1,
+  box = 1;
+var word = "";
 
 const Keyboard = (props) => {
-  var line = 1, box = 1;
-  var word = "";
   const keyLayout = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"], //backpace included here by default
     ["Z", "X", "C", "V", "B", "N", "M"], //enter included on bottom by default
   ];
 
-  const [keyInput, setKeyInput] = React.useState("");
-
   var game = new Feudle();
-  game.set_word("ROUTE");
+  game.set_word("DUMMY");
 
   const change_green = (line, box, num, key) => {
     const s = num + "line" + line.toString() + "box" + box.toString();
     document.getElementById(s).style.backgroundColor = "rgb(70, 168, 66)";
-    document.getElementById("key"+key.toString().toUpperCase()).style.background = "rgb(70, 168, 66)";
-  }
+    document.getElementById(
+      "key" + key.toString().toUpperCase()
+    ).style.background = "rgb(70, 168, 66)";
+  };
   const change_yellow = (line, box, num, key) => {
     const s = num + "line" + line.toString() + "box" + box.toString();
     document.getElementById(s).style.backgroundColor = "rgb(239, 187, 16)";
-    if(document.getElementById("key"+key.toString().toUpperCase()).style.background !== "rgb(70, 168, 66)") {
-      document.getElementById("key"+key.toString().toUpperCase()).style.background = "rgb(239, 187, 16)";
+    if (
+      document.getElementById("key" + key.toString().toUpperCase()).style
+        .background !== "rgb(70, 168, 66)"
+    ) {
+      document.getElementById(
+        "key" + key.toString().toUpperCase()
+      ).style.background = "rgb(239, 187, 16)";
     }
-  }
+  };
   const change_grey = (line, box, num, key) => {
     const s = num + "line" + line.toString() + "box" + box.toString();
     document.getElementById(s).style.backgroundColor = "rgb(95, 104, 112)";
-    if(document.getElementById("key"+key.toString().toUpperCase()).style.background !== "rgb(70, 168, 66)" 
-    && document.getElementById("key"+key.toString().toUpperCase()).style.background !== "rgb(239, 187, 16)") {
-      document.getElementById("key"+key.toString().toUpperCase()).style.background = "rgb(95, 104, 112)";
+    if (
+      document.getElementById("key" + key.toString().toUpperCase()).style
+        .background !== "rgb(70, 168, 66)" &&
+      document.getElementById("key" + key.toString().toUpperCase()).style
+        .background !== "rgb(239, 187, 16)"
+    ) {
+      document.getElementById(
+        "key" + key.toString().toUpperCase()
+      ).style.background = "rgb(95, 104, 112)";
     }
-  }
+  };
 
-  document.addEventListener("keyup", Respond);
-  function Respond(event) {
-    switch (event.code) {
-      case "Enter":
-        if(word.length == 5) {
-          console.log(word);
-          game.guess(word);
-          var s = game.color(word);
-          if (s == "ggggg") {
-            props.onVictory();
-          }
-          for (var i = 0; i < s.length; i++) {
-
-            const s2 = "line" + line.toString() + "box" + (i+1).toString();
-
-            document.getElementById(s2).style.color = "rgb(255, 255, 255)";
-            document.getElementById(s2).style.border = "0px solid black";
-            document.getElementById(s2).style.margin = "4px";
-            document.getElementById(s2).style.fontSize = "25px";
-            document.getElementById(s2).style.height = "4.4vw";
-            document.getElementById(s2).style.width = "4.4vw";
-
-            if(s[i] == 'g') {
-              change_green(line,i+1,"", word[i]);
+  React.useEffect(() => {
+    document.addEventListener("keyup", Respond);
+    function Respond(event) {
+      console.log(event.key);
+      switch (event.code) {
+        case "Enter":
+          if (word.length == 5) {
+            console.log(word + "wth is happening");
+            game.guess(word);
+            var s = game.color(word);
+            if (s == "ggggg") {
+              props.onVictory();
             }
-            if(s[i] == 'y') {
-              change_yellow(line,i+1,"", word[i]);
-            }
-            if(s[i] == 'e') {
-              change_grey(line,i+1,"", word[i]);
-            }
-          }
+            for (var i = 0; i < s.length; i++) {
+              const s2 = "line" + line.toString() + "box" + (i + 1).toString();
+              console.log(s2);
 
-          line++;
-          box = 1;
-          word = "";
-        }
-        else alert("Word must be 5 letters")
-      case "Backspace" :
-        if(box > 1) box--;
-        var s = "line" + line.toString() + "box" + box.toString();
-        document.getElementById(s).innerHTML = `<div></div><br />`;
-        document.getElementById(s).style.border = "0.1px solid black";
-        document.getElementById(s).style.margin = "4px";
-        if(word.length != 0) word = word.slice(0,-1);
-        break;
-      default:
-        if(box <= 5) {
-          var s = "line" + line.toString() + "box" + box.toString();  
-          var keyValue = event.code.toUpperCase();
-          document.getElementById(s).innerHTML +=`<div>${keyValue[keyValue.length-1]}</div><br />`;
-          document.getElementById(s).style.border = "2px solid black";
+              document.getElementById(s2).style.color = "rgb(255, 255, 255)";
+              document.getElementById(s2).style.border = "0px solid black";
+              document.getElementById(s2).style.margin = "4px";
+              document.getElementById(s2).style.fontSize = "25px";
+              document.getElementById(s2).style.height = "4.4vw";
+              document.getElementById(s2).style.width = "4.4vw";
+
+              if (s[i] == "g") {
+                change_green(line, i + 1, "", word[i]);
+              }
+              if (s[i] == "y") {
+                change_yellow(line, i + 1, "", word[i]);
+              }
+              if (s[i] == "e") {
+                change_grey(line, i + 1, "", word[i]);
+              }
+            }
+
+            line++;
+            box = 1;
+            word = "";
+          } else alert("Word must be 5 letters");
+        case "Backspace":
+          if (box > 1) box--;
+          var s = "line" + line.toString() + "box" + box.toString();
+          document.getElementById(s).innerHTML = `<div></div><br />`;
+          document.getElementById(s).style.border = "0.1px solid black";
           document.getElementById(s).style.margin = "4px";
-          word += keyValue[keyValue.length-1].toUpperCase();
-        }
-        if(box <= 5) box++;
-        break;
+          if (word.length != 0) word = word.slice(0, -1);
+          break;
+        default:
+          if (box <= 5) {
+            var s = "line" + line.toString() + "box" + box.toString();
+            var keyValue = event.code.toUpperCase();
+            document.getElementById(s).innerHTML = `<div>${
+              keyValue[keyValue.length - 1]
+            }</div><br />`;
+            //changed += to =
+            document.getElementById(s).style.border = "2px solid black";
+            document.getElementById(s).style.margin = "4px";
+            word += keyValue[keyValue.length - 1].toUpperCase();
+          }
+          if (box <= 5) box++;
+          break;
       }
-  }
-  
+    }
+  }, []);
 
   const buttonPressHandler = (keyValue) => {
     //set max length of input to 5
-    if(box <= 5) {
-      var s = "line" + line.toString() + "box" + box.toString();  
-      document.getElementById(s).innerHTML +=`<div>${keyValue.toUpperCase()}</div><br />`;
+    if (box <= 5) {
+      var s = "line" + line.toString() + "box" + box.toString();
+      document.getElementById(
+        s
+      ).innerHTML += `<div>${keyValue.toUpperCase()}</div><br />`;
       document.getElementById(s).style.border = "2px solid black";
       document.getElementById(s).style.margin = "4px";
       word += keyValue.toUpperCase();
     }
-    if(box <= 5) box++;
-    
+    if (box <= 5) box++;
   };
 
   const backspaceHandler = () => {
-    if(box > 1) box--;
+    if (box > 1) box--;
     var s = "line" + line.toString() + "box" + box.toString();
     document.getElementById(s).innerHTML = `<div></div><br />`;
     document.getElementById(s).style.border = "0.1px solid black";
     document.getElementById(s).style.margin = "4px";
-    if(word.length != 0) word = word.slice(0,-1);
+    if (word.length != 0) word = word.slice(0, -1);
   };
-
 
   const submitHandler = () => {
     //submit only when input is 5 characters
-    if(word.length == 5) {
+    if (word.length == 5) {
       game.guess(word);
 
       var s = game.color(word);
@@ -133,8 +150,7 @@ const Keyboard = (props) => {
       }
 
       for (var i = 0; i < s.length; i++) {
-
-        const s2 = "line" + line.toString() + "box" + (i+1).toString();
+        const s2 = "line" + line.toString() + "box" + (i + 1).toString();
 
         document.getElementById(s2).style.color = "rgb(255, 255, 255)";
         document.getElementById(s2).style.border = "0px solid black";
@@ -143,21 +159,20 @@ const Keyboard = (props) => {
         document.getElementById(s2).style.height = "4.4vw";
         document.getElementById(s2).style.width = "4.4vw";
 
-        if(s[i] == 'g') {
-          change_green(line,i+1,"", word[i]);
+        if (s[i] == "g") {
+          change_green(line, i + 1, "", word[i]);
         }
-        if(s[i] == 'y') {
-          change_yellow(line,i+1,"", word[i]);
+        if (s[i] == "y") {
+          change_yellow(line, i + 1, "", word[i]);
         }
-        if(s[i] == 'e') {
-          change_grey(line,i+1,"", word[i]);
+        if (s[i] == "e") {
+          change_grey(line, i + 1, "", word[i]);
         }
       }
       line++;
       box = 1;
       word = "";
-    }
-    else alert("Word must be 5 letters")
+    } else alert("Word must be 5 letters");
   };
 
   const backspaceKey = (
@@ -186,18 +201,30 @@ const Keyboard = (props) => {
       <div className="keyboard__keys">
         <div>
           {keyLayout[0].map((key) => (
-            <Key text={key} onPress={buttonPressHandler} id={"key" + key.toString()} />
+            <Key
+              text={key}
+              onPress={buttonPressHandler}
+              id={"key" + key.toString()}
+            />
           ))}
         </div>
         <div>
-        {keyLayout[1].map((key) => (
-            <Key text={key} onPress={buttonPressHandler} id={"key" + key.toString()} />
+          {keyLayout[1].map((key) => (
+            <Key
+              text={key}
+              onPress={buttonPressHandler}
+              id={"key" + key.toString()}
+            />
           ))}
           {backspaceKey}
         </div>
         <div>
-        {keyLayout[2].map((key) => (
-            <Key text={key} onPress={buttonPressHandler} id={"key" + key.toString()} />
+          {keyLayout[2].map((key) => (
+            <Key
+              text={key}
+              onPress={buttonPressHandler}
+              id={"key" + key.toString()}
+            />
           ))}
           {enterKey}
         </div>

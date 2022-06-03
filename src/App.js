@@ -15,9 +15,6 @@ import stat3 from "./static/stat3.png";
 
 //https://codesandbox.io/s/77yom?file=/src/App.js:170-342
 
-
-
-
 Modal.setAppElement("#root");
 const confettiSettings = {
   shapes: [
