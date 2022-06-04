@@ -1,4 +1,4 @@
-import { getDictionary } from './lib';
+import { getDictionary } from '../resources/lib';
 
 class ClientState {
     constructor() {

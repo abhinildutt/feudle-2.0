@@ -3,9 +3,9 @@ import "./Keyboard.css";
 import Key from "./Key";
 import Feudle from "../../logic/game";
 import ClientState from "../../logic/clientState";
-import { getWord } from '../../logic/lib';
 import { MessageType } from "../../shared";
 import {io} from 'socket.io-client'
+import { getWord } from "../../resources/lib";
 
 const Keyboard = () => {
   var line = 1, box = 1;
@@ -20,7 +20,7 @@ const Keyboard = () => {
 
   var game = new Feudle();
   var clientState = new ClientState();
-  const socket = io("http://localhost:5000");
+  const socket = io("http://localhost:5001");
 
   useEffect(() => {
     socket.on('connect', () => {
@@ -41,8 +41,8 @@ const Keyboard = () => {
 		});
 
 		socket.on(MessageType.StartEvent, (data) => {
-			let index = data.index;
-			let word = getWord(index).toUpperCase();
+      let index = data.index;
+      let word = getWord(index);
 			game.setWord(word);
 			clientState.setWord(word);
 			clientState.setGameStarted(true);
